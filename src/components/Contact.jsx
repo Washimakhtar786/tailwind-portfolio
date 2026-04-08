@@ -1,5 +1,8 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { FaEnvelope, FaUser, FaCommentDots } from "react-icons/fa";
+import toast from "react-hot-toast";
+import emailjs from "emailjs-com";
 
 export default function Contact() {
   const [form, setForm] = useState({
@@ -8,8 +11,6 @@ export default function Contact() {
     message: "",
   });
 
-  const [errors, setErrors] = useState({});
-  const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
 
   // HANDLE INPUT
@@ -17,41 +18,33 @@ export default function Contact() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // VALIDATION
-  const validate = () => {
-    let newErrors = {};
-
-    if (!form.name.trim()) newErrors.name = "Name is required";
-
-    if (!form.email.trim()) {
-      newErrors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(form.email)) {
-      newErrors.email = "Invalid email";
-    }
-
-    if (!form.message.trim()) newErrors.message = "Message is required";
-
-    return newErrors;
-  };
-
   // SUBMIT
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const validationErrors = validate();
-    setErrors(validationErrors);
-
-    if (Object.keys(validationErrors).length === 0) {
-      setLoading(true);
-
-      setTimeout(() => {
-        setLoading(false);
-        setSuccess(true);
-        setForm({ name: "", email: "", message: "" });
-
-        setTimeout(() => setSuccess(false), 3000);
-      }, 1500);
+    if (!form.name || !form.email || !form.message) {
+      toast.error("All fields are required ❌");
+      return;
     }
+
+    setLoading(true);
+
+    emailjs
+      .send(
+        "service_3jrw415",
+        "template_2nyxbrh",
+        form,
+        "T6UYvIKLd1cg_BNsX"
+      )
+      .then(() => {
+        toast.success("Message sent successfully 🚀");
+        setForm({ name: "", email: "", message: "" });
+        setLoading(false);
+      })
+      .catch(() => {
+        toast.error("Failed to send message ❌");
+        setLoading(false);
+      });
   };
 
   return (
@@ -61,22 +54,24 @@ export default function Contact() {
     >
       <div className="max-w-6xl mx-auto">
 
-        {/* TITLE */}
-        <h2 className="text-4xl font-bold text-center text-gray-800 dark:text-white mb-12">
+        {/* TITLE ANIMATION */}
+        <motion.h2
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-4xl font-bold text-center text-gray-800 dark:text-white mb-12"
+        >
           Contact Me
-        </h2>
-
-        {/* SUCCESS MESSAGE */}
-        {success && (
-          <div className="mb-6 text-center bg-green-500 text-white py-2 rounded">
-            Message sent successfully 🚀
-          </div>
-        )}
+        </motion.h2>
 
         <div className="grid md:grid-cols-2 gap-10 items-center">
 
-          {/* LEFT */}
-          <div>
+          {/* LEFT SIDE */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+          >
             <h3 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">
               Let's Talk
             </h3>
@@ -91,12 +86,15 @@ export default function Contact() {
                 washimwdn@email.com
               </p>
             </div>
-          </div>
+          </motion.div>
 
           {/* FORM */}
-          <form
+          <motion.form
             onSubmit={handleSubmit}
-            className="backdrop-blur-lg bg-white/60 dark:bg-gray-800/60 p-8 rounded-2xl shadow-xl space-y-6 border border-gray-200 dark:border-gray-700"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="backdrop-blur-lg bg-white/60 dark:bg-gray-800/60 p-8 rounded-2xl shadow-xl space-y-6 border"
           >
 
             {/* NAME */}
@@ -116,9 +114,6 @@ export default function Contact() {
               >
                 Your Name
               </label>
-              {errors.name && (
-                <p className="text-red-500 text-sm mt-1">{errors.name}</p>
-              )}
             </div>
 
             {/* EMAIL */}
@@ -138,9 +133,6 @@ export default function Contact() {
               >
                 Your Email
               </label>
-              {errors.email && (
-                <p className="text-red-500 text-sm mt-1">{errors.email}</p>
-              )}
             </div>
 
             {/* MESSAGE */}
@@ -160,23 +152,19 @@ export default function Contact() {
               >
                 Your Message
               </label>
-              {errors.message && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.message}
-                </p>
-              )}
             </div>
 
             {/* BUTTON */}
-            <button
+            <motion.button
+              whileTap={{ scale: 0.95 }}
               type="submit"
               disabled={loading}
-              className="w-full py-3 rounded-lg text-white font-semibold bg-gradient-to-r from-blue-500 to-indigo-600 hover:scale-105 transition duration-300"
+              className="w-full py-3 rounded-lg text-white font-semibold bg-gradient-to-r from-blue-500 to-indigo-600 hover:scale-105 transition"
             >
               {loading ? "Sending..." : "Send Message 🚀"}
-            </button>
+            </motion.button>
 
-          </form>
+          </motion.form>
         </div>
       </div>
     </section>
