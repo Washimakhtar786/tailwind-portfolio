@@ -64,7 +64,7 @@ export default function Contact() {
           Contact Me
         </motion.h2>
 
-        <div className="grid md:grid-cols-2 gap-10 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 ">
 
           {/* LEFT SIDE */}
           <motion.div
@@ -83,7 +83,7 @@ export default function Contact() {
             <div className="flex items-center gap-3">
               <FaEnvelope className="text-blue-500" />
               <p className="text-gray-700 dark:text-gray-300">
-                washimwdn@email.com
+                washimwdn@gmail.com
               </p>
             </div>
           </motion.div>
@@ -94,7 +94,7 @@ export default function Contact() {
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="backdrop-blur-lg bg-white/60 dark:bg-gray-800/60 p-8 rounded-2xl shadow-xl space-y-6 border"
+            className="p-6 sm:p-8"
           >
 
             {/* NAME */}

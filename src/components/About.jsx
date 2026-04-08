@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 export default function About() {
   return (
     <section id="about" className="py-20 px-4 bg-[#1a0f2e] text-white">
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
 
         {/* LEFT CARD */}
         <motion.div
@@ -19,7 +19,7 @@ export default function About() {
             <img
               src={aboutData.image}
               alt="profile"
-              className="w-64 h-64 md:w-80 md:h-[360px] object-cover rounded-2xl shadow-2xl border-4 border-indigo-500 hover:scale-105 transition duration-300"
+              className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-[360px]"
             />
           </div>
 
@@ -78,7 +78,7 @@ export default function About() {
             What I Do !!!
           </h3>
 
-          <div className="grid sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {aboutData.services.map((service, i) => (
               <motion.div
                 key={i}

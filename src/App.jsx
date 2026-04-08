@@ -7,7 +7,7 @@ import Footer from "./components/Footer";
 
 export default function App() {
   return (
-    <div className="font-sans">
+    <div className="font-sans overflow-x-hidden">
       <Navbar />
       <Hero />
       <About />

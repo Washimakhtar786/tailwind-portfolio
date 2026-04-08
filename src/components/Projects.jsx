@@ -38,7 +38,7 @@ export default function Projects() {
       </div>
 
       {/* GRID */}
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {filteredProjects.map((p) => (
           <motion.div
             key={p.id}
@@ -56,7 +56,7 @@ export default function Projects() {
             }}
             />
 
-            <div className="p-4">
+            <div className="p-4 sm:p-6">
               
               <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
                 {p.title}
