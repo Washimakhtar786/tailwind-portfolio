@@ -12,24 +12,29 @@ export default function About() {
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
-          className="bg-black/40 p-6 rounded-xl shadow-lg text-center"
+          className="bg-black/40 p-6 rounded-xl shadow-lg text-center flex flex-col items-center"
         >
-          <img
-            src={aboutData.image}
-            alt="profile"
-            className="w-40 h-40 mx-auto rounded-lg mb-4"
-          />
+          {/* IMAGE CENTERED */}
+          <div className="flex justify-center items-center mb-4">
+            <img
+              src={aboutData.image}
+              alt="profile"
+              className="w-64 h-64 md:w-80 md:h-[360px] object-cover rounded-2xl shadow-2xl border-4 border-indigo-500 hover:scale-105 transition duration-300"
+            />
+          </div>
 
+          {/* NAME */}
           <h3 className="text-xl font-semibold">
             {aboutData.name}
           </h3>
 
+          {/* ROLE */}
           <p className="text-sm text-gray-400 mb-4">
             {aboutData.role}
           </p>
 
           {/* CONTACT */}
-          <div className="text-sm text-gray-300 space-y-3 text-left mt-4">
+          <div className="text-sm text-gray-300 space-y-3 text-left mt-4 w-full">
             <p className="flex items-center gap-2">
               <FaPhone /> {aboutData.phone}
             </p>
@@ -45,7 +50,7 @@ export default function About() {
           <a
             href="/cv.pdf"
             download
-            className="block mt-6 bg-pink-500 px-4 py-2 rounded-lg hover:bg-pink-600 transition"
+            className="mt-6 bg-pink-500 px-6 py-2 rounded-lg hover:bg-pink-600 transition"
           >
             Download CV
           </a>

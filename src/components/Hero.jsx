@@ -43,7 +43,7 @@ const Hero = () => {
         {/* RIGHT IMAGE */}
         <div className="flex justify-center">
           <img
-            src="/your-image.jpg"  // 👈 replace with your image
+            src="/my pic.jpg"  //👈 replace with your image
             alt="Washim"
             className="w-72 h-72 md:w-96 md:h-96 object-cover rounded-2xl shadow-2xl border-4 border-indigo-500"
           />

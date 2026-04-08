@@ -1,10 +1,10 @@
 export const aboutData = {
   name: "Washim Akhtar",
   role: "MERN Stack Developer",
-  phone: "+91 98765 43210",
-  email: "washim@email.com",
+  phone: "+91 6268528753",
+  email: "washimwdn@email.com",
   location: "India",
-  image: "/profile.jpg",
+  image: "/my-photo.jpeg",
 
   description1:
     "I'm a passionate MERN Stack Developer focused on building modern, scalable, and user-friendly applications.",
